@@ -59,6 +59,27 @@
 			<div class='left'><div><div data-i18n="settings.webInterface.multimapButtons">Show multimap buttons</div><div class="small" data-i18n="settings.webInterface.multimapButtonsExt">allows saving and restoring maps (experimental)</div></div></div>
 			<div class='right'><ons-switch class="settings-webif-switch" id="settings-webif-show-multimap"></ons-switch></div>
 		</ons-list-item>
+
+		<ons-list-title style="margin-top:5px;">
+			<div class='left'>
+				<div>
+					<div data-i18n="settings.webInterface.robotRockButtons">RobotRock settings</div>
+					<div class="small" data-i18n="settings.webInterface.robotRockButtonsExt">allows starting and stoping a music service (experimental)</div>
+				</div>
+			</div>
+		</ons-list-title>
+		<ons-list>
+			<ons-list-item>
+				<div data-i18n="common.enabled" class="left">Enabled:</div>
+				<div class="right"><ons-switch class="settings-webif-switch" id="settings-webif-robotrock-buttons" onchange="switchControlsRobotRock();"></ons-switch></div>
+			</ons-list-item>
+			<ons-list-item>
+				<div data-i18n="settings.webInterface.robotRockCmd" class="left">Launch command:</div>
+				<div class="center" style="width:90%;">
+					<ons-input id="settings-webif-robotrock-cmd" class="robotrock-switchable-input" type="text" float style="width:100%;"></ons-input>
+				</div>
+			</ons-list-item>
+		</ons-list>
 	</ons-list>
 	<ons-list-title style="margin-top:5px;" data-i18n="settings.webInterface.mapTab">
 		Map tab
@@ -96,9 +117,15 @@
 		var switches = document.querySelectorAll('.settings-webif-switch'),
 			selects = document.querySelectorAll('.settings-webif-select'),
 			loadingBarWebif = document.getElementById('loading-bar-settings-web-interface'),
+			settingsRobotRockEnabled = document.getElementById('settings-webif-robotrock-buttons'),
+			settingsRobotRockCmd = document.getElementById('settings-webif-robotrock-cmd'),
 			oldLocalization, oldStyle, oldHideSegmentMarkers;
 
 		document.querySelector("#settings-web-interface-page ons-back-button").onClick = () => fn.popPage();
+
+		function switchControlsRobotRock() {
+			document.querySelectorAll('.robotrock-switchable-input').forEach(element => settingsRobotRockEnabled.checked ? element.removeAttribute('disabled') : element.setAttribute('disabled','disabled'));
+		}
 
 		ons.getScriptPage().onInit = function() {
 			fn.localize('#settings-web-interface-page');
@@ -145,9 +172,14 @@
 			selects.forEach(sel => {
 				sel.value = window.fn.webifSettings[getOptionName(sel.id)] || "";
 			});
+			const defRockCmd = "exec /mnt/data/librespot --disable-audio-cache --name RobotRock";
+			settingsRobotRockCmd.value = window.fn.webifSettings['robotrockCmd'] || defRockCmd;
 		};
 
 		function setWebifSettings() {
+			if (settingsRobotRockEnabled.checked) {
+				window.fn.webifSettings.robotrockCmd = settingsRobotRockCmd.value.trim() || '';
+			}
 			loadingBarWebif.setAttribute("indeterminate", "indeterminate");
 			fn.prequestWithPayload("api/interface_config", JSON.stringify(window.fn.webifSettings), "PUT")
 			.then((res) => {

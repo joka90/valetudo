@@ -200,8 +200,8 @@
     "segmentsSplitOK": "Kartan delades till rum!"
   },
   "control": {
-    "startButton": "Starta Manuel Styrning",
-    "stopButton": "Stopa Manuel Styrning"
+    "startButton": "Starta Manuell Styrning",
+    "stopButton": "Stoppa Manuell Styrning"
   },
   "telegram": {
     "fanpower": {
@@ -225,7 +225,7 @@
       "start": "Start",
       "pause": "Pause",
       "resume": "Återgå",
-      "stop": "Stop",
+      "stop": "Stopp",
       "zones": "Områden",
       "spot": "Punkt",
       "rooms": "Rum",
@@ -234,7 +234,9 @@
       "goto": "Gå till",
       "back": "-- tillbaka --",
       "runZoned": "-- Kör områdesstädning --",
-      "runSegments": "-- Kör rumstädning --"
+      "runSegments": "-- Kör rumstädning --",
+      "start_rock": "Starta RobotRock",
+      "stop_rock": "Stopp rocking"
     },
     "missingPassword": "Lösenord saknas.",
     "wrongPassword": "Lösenord ogiltigt.",
@@ -531,6 +533,9 @@
       "gotoImmediateExt": "istället för att fortgå till kartflik",
       "multimapButtons": "Visa multi-kart knappar",
       "multimapButtonsExt": "möjliggör spara och återställa kartor (experimentell)",
+      "robotRockButtons": "RobotRock-inställningar",
+      "robotRockButtonsExt": "tillåter starta och stoppa en musikservice (experimentell)",
+      "robotRockCmd": "Startkommando:",
       "mapTab": "Kartflik",
       "hideMapStatus": "dölj status på kartan",
       "hideMapStatusExt": "dölj området med statustext",

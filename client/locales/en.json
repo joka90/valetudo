@@ -213,7 +213,9 @@
 			"goto": "Goto",
 			"back": "-- back --",
 			"runZoned": "-- Run zoned cleaning --",
-			"runSegments": "-- Run room cleaning --"
+			"runSegments": "-- Run room cleaning --",
+			"start_rock": "Start RobotRock",
+			"stop_rock": "Stop rocking"
 		},
 		"missingPassword": "Password not given.",
 		"wrongPassword": "Password is wrong.",
@@ -510,6 +512,9 @@
 			"gotoImmediateExt": "instead of proceeding to the map tab",
 			"multimapButtons": "Show multimap buttons",
 			"multimapButtonsExt": "allows saving and restoring maps (experimental)",
+			"robotRockButtons": "RobotRock settings",
+			"robotRockButtonsExt": "allows starting and stoping a music service (experimental)",
+			"robotRockCmd": "Launch command:",
 			"mapTab": "Map tab",
 			"hideMapStatus": "Do not show status on map",
 			"hideMapStatusExt": "hides the block with status text",
